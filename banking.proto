@@ -1,0 +1,74 @@
+
+syntax = "proto3";
+
+package banking;
+
+// Service for managing account balances.
+service AccountManagementService {
+  rpc getBalance (BalanceRequest) returns (BalanceResponse);
+  rpc updateBalance (UpdateBalanceRequest) returns (UpdateBalanceResponse);
+}
+
+// Service for money transfers and transaction history.
+service TransactionService {
+  rpc initiateTransfer (TransferRequest) returns (TransferResponse);
+  rpc getTransactionHistory (TransactionHistoryRequest)
+      returns (TransactionHistoryResponse);
+}
+
+// Request to retrieve an account balance.
+message BalanceRequest {
+  string user_id = 1;
+}
+
+// Response containing the account balance in paise.
+message BalanceResponse {
+  string user_id = 1;
+  int64 balance_paise = 2;
+}
+
+// Request to update an account balance.
+message UpdateBalanceRequest {
+  string user_id = 1;
+  int64 new_balance_paise = 2;
+}
+
+// Response after updating an account balance.
+message UpdateBalanceResponse {
+  bool success = 1;
+  string message = 2;
+  int64 updated_balance_paise = 3;
+}
+
+// Request to transfer money between accounts.
+message TransferRequest {
+  string from_user_id = 1;
+  string to_user_id = 2;
+  int64 amount_paise = 3;
+}
+
+// Response after a transfer attempt.
+message TransferResponse {
+  bool success = 1;
+  string message = 2;
+  string transaction_id = 3;
+}
+
+// Request to retrieve a user's transaction history.
+message TransactionHistoryRequest {
+  string user_id = 1;
+}
+
+// Details of an individual transaction.
+message Transaction {
+  string transaction_id = 1;
+  string from_user_id = 2;
+  string to_user_id = 3;
+  int64 amount_paise = 4;
+  string timestamp = 5;
+}
+
+// Response containing a list of transactions.
+message TransactionHistoryResponse {
+  repeated Transaction transactions = 1;
+}

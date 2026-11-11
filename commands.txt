@@ -1,0 +1,10 @@
+# installing necessary libs
+python -m pip install grpcio grpcio-tools protobuf
+
+
+# check 
+python -m pip show grpcio grpcio-tools protobuf
+
+# generate the files 
+
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. banking.proto
