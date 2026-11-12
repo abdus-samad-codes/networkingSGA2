@@ -1,19 +1,17 @@
-
 syntax = "proto3";
 
 package banking;
 
 // Service for managing account balances.
 service AccountManagementService {
-  rpc getBalance (BalanceRequest) returns (BalanceResponse);
-  rpc updateBalance (UpdateBalanceRequest) returns (UpdateBalanceResponse);
+  rpc getBalance(BalanceRequest) returns (BalanceResponse);
+  rpc updateBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse);
 }
 
 // Service for money transfers and transaction history.
 service TransactionService {
-  rpc initiateTransfer (TransferRequest) returns (TransferResponse);
-  rpc getTransactionHistory (TransactionHistoryRequest)
-      returns (TransactionHistoryResponse);
+  rpc initiateTransfer(TransferRequest) returns (TransferResponse);
+  rpc getTransactionHistory(TransactionHistoryRequest) returns (TransactionHistoryResponse);
 }
 
 // Request to retrieve an account balance.
